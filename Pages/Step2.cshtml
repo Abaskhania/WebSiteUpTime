@@ -1,0 +1,22 @@
+﻿@page
+@model SatraWebApplication.Pages.Step2Model
+@{
+}
+@if (Model.ShowResult)
+{
+    <h2>Form Submission Complete</h2>
+    <p><strong>Step 1 Data:</strong> @Model.Step1Data</p>
+    <p><strong>Step 2 Data:</strong> @Model.Step2Data</p>
+}
+else
+{
+    <form method="post">
+        <div class="form-group">
+            <label asp-for="Step2Data" class="control-label">Input Step 2 Data:</label>
+            <input asp-for="Step2Data" name="Step2Data" class="form-control" />
+            <span asp-validation-for="Step2Data" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+}
+<a href="/">Back to Home</a>

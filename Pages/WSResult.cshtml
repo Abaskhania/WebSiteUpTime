@@ -1,0 +1,56 @@
+﻿@page
+@model SatraWebApplication.Pages.WSResultModel
+@{
+}
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th style="width:50px">
+                ردیف
+            </th>
+            <th>
+                آدرس سایت
+            </th>
+            @* <th>وضعیت</th>
+                    <th></th> *@
+
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int index = 1; // Start index from 1
+        }
+        @foreach (var item in Model.siteList!)
+        {
+            <tr>
+                <td>
+                    @index
+                </td>
+                <td>
+                    <a class="link-primary" target="_blank" href=@item.URL>@item.URL</a>
+
+
+                </td>
+                @* <td>
+                            @item.Result
+
+
+                        </td>
+                        <td>
+                            <a class="btn btn-primary "
+                               asp-area=""
+                               asp-page="/ListWebsite"
+                               asp-page-handler="Refresh"
+                               asp-route-id=@item.ID
+                               asp-route-state=@item.ResultGroup
+                            >Refresh</a>
+
+
+                        </td> *@
+
+            </tr>
+            index++;
+        }
+    </tbody>
+</table>

@@ -1,0 +1,29 @@
+﻿@page
+@model SatraWebApplication.Pages.testModel
+@{
+}
+@* @foreach (var state in Model.States)
+{
+    <input type="radio" asp-for="State" value="@state" />
+    @state
+    <br />
+} *@
+<form method="post">
+    @foreach (var s in Model.States)
+    {
+        <input type="radio" asp-for="State" value="@s" id="State@(s)" />
+        @s
+    
+        <br />
+    }
+    <input type="submit" />
+</form>
+<form method="post">
+    @foreach (var s in Model.States)
+    {
+        @Html.RadioButtonFor(model => model.State, s) @s
+    
+        <br />
+    }
+    <input type="submit" />
+</form>

@@ -1,0 +1,48 @@
+﻿@page
+@model SatraWebApplication.Pages.Account.login2Model
+@{
+}
+<br />
+<div class="row justify-content-center">
+    <div class="col-md-5 col-lg-4">
+        <div class="card login-card">
+            <div class="login-header">
+                <h4 class="mb-0">خوش آمدید</h4>
+                <small>لطفاً وارد حساب خود شوید</small>
+            </div>
+            <div class="card-body p-4">
+                <form method="post">
+                    <!-- نام کاربری -->
+                    <div class="mb-3">
+                        <label class="form-label">نام کاربری </label>
+                        <input type="text" asp-for="Username" class="form-control" placeholder="">
+                    </div>
+
+                    <!-- رمز عبور -->
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between">
+                            <label class="form-label">رمز عبور</label>
+                            @* <a href="#" class="forgot-link">رمز را فراموش کرده‌اید؟</a> *@
+                        </div>
+                        <input type="password" asp-for="Password" class="form-control" placeholder="***">
+                    </div>
+
+                    <!-- مرا به خاطر بسپار -->
+                    <div class="mb-4 form-check">
+                        <input type="checkbox" asp-for="RememberMe" class="form-check-input" >
+                        <label class="form-check-label" asp-for="RememberMe">مرا به خاطر بسپار</label>
+                    </div>
+
+                    <!-- دکمه ورود -->
+                    <div class="d-grid">
+
+                        <button type="submit" class="btn btn-primary btn-login">ورود به حساب</button>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer bg-white border-0 text-center pb-4">
+                @* <p class="mb-0 text-muted">حساب کاربری ندارید؟ <a href="#" class="text-primary text-decoration-none">ثبت‌نام کنید</a></p> *@
+            </div>
+        </div>
+    </div>
+</div>

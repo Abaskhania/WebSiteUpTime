@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - سامانه بررسی وضعیت رسانه ها</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/SatraWebApplication.styles.css" asp-append-version="true" />
+    @*<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>*@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <script src="~/js/chart.js"></script>
+    <script src="~/js/chartjs-plugin-datalabels.js"></script>
+    @RenderSection("Styles",required:false)
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-page="/Index">
+                    بررسی وضعیت رسانه های صوت و تصویر
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
+                        <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"></path>
+                    </svg>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        
+                        @*  <li class="nav-item">
+                                <a class="nav-link active" href="/Account/Register">تعریف کاربر جدید</a>
+                            </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="/History">تاریخچه</a>
+                        </li> *@
+                    </ul>
+
+                    
+                    <ul class="navbar-nav ms-auto">
+                        @if (User.Identity!.IsAuthenticated)
+                        {
+                            
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle btn btn-outline-primary px-3" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
+                                    @User.Identity.Name خوش آمدی
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    @if (User.IsInRole("Admin"))
+                                    {
+                                        <li><a class="dropdown-item" href="/Account/Register">تعریف کاربر</a></li> 
+                                        <li><hr class="dropdown-divider"></li>
+
+                                    }
+                                    @**@
+                                    <li>
+                                        <form asp-area="Identity" asp-page="/Account/Logout" class="d-inline" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post" id="logoutForm" >
+                                            
+                                                    <button type="submit" class="dropdown-item btn btn-danger "><i class="fa fa-sign-out"></i> خروج </button>
+                                                
+                                        </form>
+                                        
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+                        else
+                        {
+                            <!-- نمایش در صورتی که کاربر وارد نشده است -->
+                            @*<li class="nav-item">
+                                <a class="nav-link btn btn-link" href="/Account/Login">ورود</a>
+                            </li>
+                             <li class="nav-item">
+                                <a class="nav-link btn btn-primary text-white ms-2 px-4" href="/Account/Register">ثبت نام</a>
+                            </li> *@
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <br />
+        
+        
+       
+            
+            
+        
+    </header>
+    <div class="container" style="direction:rtl">
+        
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            اداره‌ کل فناوری و سامانه‌های نوین
+            مدیریت فنی و فناوری اطلاعات © ۱۴۰۵ @*-  <a asp-area="" asp-page="/Privacy">Privacy</a> *@
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+   
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

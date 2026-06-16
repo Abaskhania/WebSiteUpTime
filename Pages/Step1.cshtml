@@ -1,0 +1,13 @@
+﻿@page
+@model SatraWebApplication.Pages.Step1Model
+@{
+}
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Step1Data" class="control-label">Input Step 1 Data:</label>
+        <input asp-for="Step1Data" name="Step1Data" class="form-control" />
+        <span asp-validation-for="Step1Data" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Next</button>
+</form>
+<a href="/">Back to Home</a>

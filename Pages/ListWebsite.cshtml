@@ -1,0 +1,149 @@
+﻿@page
+@using Newtonsoft.Json
+@model SatraWebApplication.Pages.ListWebsiteModel
+@{
+}
+<div class="row">
+    <div class="col-sm">
+        <p class="alert alert-info">@Model.ReportTitle </p>
+        @if (!string.IsNullOrEmpty(Model.AlertMessage))
+        {
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                @Model.AlertMessage
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+        
+        <p>
+
+        </p>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th style="width:50px">
+                        ردیف
+                    </th>
+                    <th>
+                        آدرس سایت
+                    </th>
+                     <th>نتیجه</th>
+                   @* <th></th> *@
+
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int index = 1; // Start index from 1
+                }
+                @foreach (var item in Model.siteList!)
+                {
+                    <tr>
+                        <td>
+                            @index
+                        </td>
+                        <td>
+                            <a class="link-primary" target="_blank" href=@item.URL>@item.URL</a>
+
+
+                        </td>
+                        <td>
+                            @item.Result
+
+
+                        </td>
+                        @* <td>
+                            <a class="btn btn-primary "
+                               asp-area=""
+                               asp-page="/ListWebsite"
+                               asp-page-handler="Refresh"
+                               asp-route-id=@item.ID
+                               asp-route-state=@item.ResultGroup
+                            >Refresh</a>
+
+
+                        </td> *@
+
+                    </tr>
+                    index++;
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-sm">
+        <div style="height: 400px">
+            <br />
+            <br />
+        <canvas id="myChart1"></canvas>
+        <br />
+        <canvas id="myChart2"></canvas>
+            <br />
+        </div>
+        </div>
+</div>
+<script type="text/javascript">
+
+       var dataLine = @Html.Raw(JsonConvert.SerializeObject(Model.ChartModelLine.Data));
+        var ctx1 = document.getElementById('myChart1').getContext('2d');
+            var chart = new Chart(ctx1, {
+            type: 'line',
+            data: {
+                labels:  dataLine.map(x => x.Label),
+                datasets: [{
+                    label: 'تعداد رسانه ',
+                    backgroundColor: 'rgb(255, 99, 132)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: dataLine.map(x => x.Value),
+                    fill:false,
+                    tension:0
+                }]
+            },
+            options: {
+             animation:{
+                 duration:1500,
+                 easing:'easeOutCirc'
+             },   
+            legend:{display:false},
+            scales:{
+                yAxes:[{ticks:{min:0}
+                    
+                }]
+            }
+            }
+        });
+    const barColors = ["#F89B78", "#F5921B","#732E00","#B1380B","#37A3A3", "##AFDC8F","#204D00","#003366","#92C5F9", "#5E40BE" ,"#707070","#E0E0E0","#F0561D","#FFCC17"];
+    var data = @Html.Raw(JsonConvert.SerializeObject(Model.Model.Data))
+    var ctx = document.getElementById('myChart2').getContext('2d');
+    var chart = new Chart(ctx, {
+
+        type: 'bar',
+        data: {
+
+            labels: data.map(x => x.Label),
+            datasets: [{
+                lable:'فعال و غیر فعال',
+                backgroundColor: barColors,
+                borderColor: barColors,
+                data: data.map(x => x.Value)
+            }]
+            },
+        options: {
+                mresponsive: true,
+                maintainAspectRatio: false,
+                legend:{ display: false },
+                title:{
+                    display:true,
+                    text:"نمودار وضعیت فعال و غیرفعال به تفکیک علت "
+                },
+                onClick: function (e) {
+                        debugger;
+                        var activePointLabel = this.getElementsAtEvent(e)[0]._model.label;
+                        //location.href = "/ListWebSite?result="+activePointLabel;
+                        window.open("WSResult?result="+activePointLabel, "_blank");
+                        //alert(activePointLabel);
+                }
+
+       }
+    });
+
+
+</script>

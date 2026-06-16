@@ -1,0 +1,255 @@
+﻿@page
+@using Newtonsoft.Json
+@model IndexModel
+@{
+    ViewData["Title"] = "خانه";
+}
+
+<div class="text-center">
+   @*  <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+     *@
+
+
+
+    <div class="row">
+        <div class="col-sm">
+            <div class="row">
+                 <div class="col-sm">
+                    <div class="alert alert-info"> تاریخ و زمان گزارش: @Model.ReportDate</div>
+                </div> 
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    
+                    
+                    <form>
+                        <div class="row align-items-start">
+                            <div class="col"></div>
+                            <div class="col">
+                                <input type="text" asp-for="SearchString" id="InputAddress" width="200" class="form-control" placeholder="آدرس رسانه " />
+                            </div>
+                            <div class="col  text-end">
+                                <input class="btn btn-primary" type="submit" value="جستجو" />
+                            </div>
+                        </div>
+                    </form>
+
+                        <br />
+                    @{
+                        int index = 1; // Start index from 1
+                    }
+                    @if (Model.websites.Count > 0)
+                    {
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        ردیف
+
+                                    </th>
+                                    <th>
+                                        آدرس
+                                    </th>
+                                    <th>
+                                        آخرین وضعیت
+                                    </th>
+                                    <th class ="text-success" title="در 30 درخواست اخیر">
+                                        UpTime
+                                    </th>
+                                   
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.websitesUpTime)
+                                {
+                                    <tr>
+                                        <td>
+
+                                            @index
+                                        </td>
+                                        <td>
+                                            <a class="link-primary" target="_blank" asp-area=""
+                                               asp-page="/WebsiteDetail" asp-route-id="@item.ID" >@item.URL</a>
+                                        
+
+                                        </td>
+                                        <td>
+                                            @item.WebSiteUpTimes.OrderByDescending(testc=>testc.ResultDate).FirstOrDefault()!.ResultGroup
+                                        </td>
+                                        <td class="text-success">
+                                            
+                                           
+                                            
+                                            @(string.Format("{0:n2}%", (item.WebSiteUpTimes.OrderByDescending(o => o.ResultDate).Take(30).Where(w => w.ResultGroup == "فعال").Count() + (30 - (item.WebSiteUpTimes.OrderByDescending(o => o.ResultDate).Count() > 30 ? 30 : item.WebSiteUpTimes.OrderByDescending(o => o.ResultDate).Count()))) / (/*item.WebSiteUpTimes.Count*1.0*/30.0) * 100))
+                                            
+                                           
+                                        </td>
+
+                                        
+                                    </tr>
+                                   index++;
+                                }
+                            </tbody>
+                        </table>
+                    }
+                </div>
+                <div class="col-sm">
+                    
+                    <table class="table  table-bordered">
+                        <thead>
+                            <tr>
+                                <th>
+                                    وضعیت رسانه
+                                </th>
+                                <th>
+                                    تعداد
+                                </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.ChartModel.Data)
+                            {
+                                <tr>
+                                    <td>
+
+                                        @item.Label
+
+                                    </td>
+                                    <td>
+                                        <a class="link-primary"
+                                           asp-area=""
+                                           asp-page="/ListWebsite"
+                                           asp-route-state=@item.Label>@Html.DisplayFor(modelItem => item.Value)</a>
+                                    </td>
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <br />
+                    <canvas id="myChart2"></canvas> 
+                    @*<canvas id="myChart1"></canvas>*@
+                     <br />
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-sm">
+                   
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+
+</div>
+    
+  
+   
+
+    <script type="text/javascript">
+         
+        @*  var dataLine = @Html.Raw(JsonConvert.SerializeObject(Model.ChartModelLine.Data));*@
+        // var ctx1 = document.getElementById('myChart1').getContext('2d');
+        //     var chart = new Chart(ctx1, {
+        //     type: 'line',
+        //     data: {
+        //         labels:  dataLine.map(x => x.Label),
+        //         datasets: [{
+        //             label: 'تعداد رسانه ',
+        //             backgroundColor: 'rgb(255, 99, 132)',
+        //             borderColor: 'rgb(255, 99, 132)',
+        //             data: dataLine.map(x => x.Value)
+        //         }]
+        //     },
+        //     options: {}
+        // });
+        const barColors = ["red","green","#F89B78","#732E00","#B1380B" ,"##AFDC8F","#204D00","#003366","#92C5F9", "#5E40BE" ,"#707070", "#F5921B","#37A3A3","#E0E0E0","#F0561D","#FFCC17"];
+        //const barColors2 = ["#707070", "#F89B78","#732E00","#B1380B" ,"##AFDC8F","#204D00","#003366","#92C5F9", "#5E40BE" ,"#F5921B","#37A3A3","#E0E0E0","#F0561D","#FFCC17"];
+
+
+
+        var data = @Html.Raw(JsonConvert.SerializeObject(Model.ChartModel.Data));
+            
+        
+        var ctx = document.getElementById('myChart2').getContext('2d');
+        var chart = new Chart(ctx, {
+
+            type: 'doughnut',
+         
+            data: {
+
+                labels: data.map(x => x.Label),
+                datasets: [{   
+                    lable:'تعداد',
+                    backgroundColor: barColors,
+                    borderColor: barColors,
+                    data: data.map(x => x.PercentValue),
+                    fill:false,
+                    tension:0
+                    
+                }
+            /*{
+                lable:'فعال و غیر فعال',
+                backgroundColor: barColors2,
+                borderColor: barColors2,
+                data: data.map(x => x.PercentValue)
+            }*/]
+                },
+            options: {
+                    legend: {
+                        display: false,
+                        labels: {
+                          fontColor: 'black' // مطمئن شوید رنگ آن با پس‌زمینه یکی نیست
+                        }
+                    },
+                    tooltips: { // دقت کنید در نسخه ۲ کلمه جمع است و داخل plugins نیست
+                        enabled: false
+                    },
+                    title:{
+                        display:true,
+                        text:"نمودار وضعیت فعال و غیر فعال رسانه ها"
+                    },
+                    plugins:
+                    {
+                        legend:{
+                            display:false
+                        },
+                        tooltip:{
+                            enabled:false
+                        },
+                        datalabels: {
+                        color: 'black',          // رنگ متن
+                        anchor: 'center',       // محل قرارگیری (start, center, end)
+                        align: 'center',        // تراز متن
+                        font: {
+                            weight: 'bold',
+                            size: 16
+                        },
+                        // شخصی‌سازی نمایش مقدار
+                        formatter: function(value, context) {
+                             let label = context.chart.data.labels[context.dataIndex];
+                            return label+' '+ value + '%'; // مثلاً اضافه کردن علامت درصد
+                        }
+                }
+
+                    }
+
+                ,
+        onClick: function (e) {
+                debugger;
+                var activePointLabel = this.getElementsAtEvent(e)[0]._model.label;
+                location.href = "ListWebSite?state="+activePointLabel;
+                //alert(activePointLabel);
+            }
+                   
+           }
+        });
+        
+        
+    </script>
+

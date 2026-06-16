@@ -1,0 +1,35 @@
+﻿body {
+
+    background-color:#f5f5f5;
+    direction:rtl;
+}
+.btnLogin
+{
+    color:white;
+    border:none;
+    background-color:navy;
+    line-height:26px;
+    
+    
+}
+input{
+    border-radius:0px !important;
+}
+
+.divider:after,
+.divider:before {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #eee;
+}
+
+.h-custom {
+    height: calc(100% - 73px);
+}
+
+@media (max-width: 450px) {
+    .h-custom {
+        height: 100%;
+    }
+}

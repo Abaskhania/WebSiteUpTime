@@ -1,0 +1,21 @@
+<html>
+
+<head>
+<script type='text/javascript'>
+fetch('https://ammaryar.ir/satra/users', {
+ method: 'GET',
+ headers: {
+ 
+ 'Accept': 'application/json'
+ }
+})
+.then(response => response.json())
+.then(data => {
+ console.log("Summary:", data);
+ })
+.catch(error => console.error('Error:', error));
+</script>
+</head>
+</html>
+
+

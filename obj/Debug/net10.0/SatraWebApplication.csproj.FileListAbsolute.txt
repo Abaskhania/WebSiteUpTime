@@ -229,3 +229,4 @@ C:\Users\a.abbaskhani\source\repos\SatraProject\SatraWebApplication\obj\Debug\ne
 C:\Users\a.abbaskhani\source\repos\SatraProject\SatraWebApplication\obj\Debug\net10.0\compressed\imug4a81e3-{0}-l3dwo8s19z-l3dwo8s19z.gz
 C:\Users\a.abbaskhani\source\repos\SatraProject\SatraWebApplication\obj\Debug\net10.0\compressed\jpey80zi6h-{0}-l3dwo8s19z-l3dwo8s19z.gz
 C:\Users\a.abbaskhani\source\repos\SatraProject\SatraWebApplication\obj\Debug\net10.0\compressed\a2d93ub1k1-{0}-n21125r6sv-n21125r6sv.gz
+C:\Users\a.abbaskhani\source\repos\SatraProject\SatraWebApplication\obj\Debug\net10.0\SatraWebApplication.sourcelink.json

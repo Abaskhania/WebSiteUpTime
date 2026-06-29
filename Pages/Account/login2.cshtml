@@ -11,9 +11,11 @@
                 <small>لطفاً وارد حساب خود شوید</small>
             </div>
             <div class="card-body p-4">
+
                 <form method="post">
                     <!-- نام کاربری -->
                     <div class="mb-3">
+                        <div asp-validation-summary="All" class="text-danger"></div>
                         <label class="form-label">نام کاربری </label>
                         <input type="text" asp-for="Username" class="form-control" placeholder="">
                     </div>

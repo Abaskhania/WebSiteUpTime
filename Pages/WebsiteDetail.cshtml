@@ -7,14 +7,14 @@
 
 @Html.Raw(@Model.CurrentState)
 
-@if (Model.HasScreenShot)
+@* @if (Model.HasScreenShot)
 {
     <p class="alert alert-info">
         <a target="_blank" href=@($"screenshot/{ Model.LastScreenShotImage}.png")>تصویر آخرین بررسی وضعیت</a>
 
     </p>  
 }
-
+ *@
 <br />
 @{
     int index = 1; // Start index from 1
@@ -31,7 +31,7 @@
             </th>
             <th>تاریخ و ساعت </th>
            
-
+            <th>تصویر </th>
         </tr>
     </thead>
     <tbody>
@@ -48,6 +48,15 @@
                         </td>
                         <td>
                             @item.ResultDate
+
+
+                        </td>
+                        <td>
+                        @if (Model.ScreenShotExist(item.ID))
+                        {
+                              <a target="_blank" href=@($"screenshot/{ item.ID.ToString()}.png")>مشاهده</a>
+                        }
+                            
 
 
                         </td>

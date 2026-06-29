@@ -65,7 +65,7 @@ wwwroot\lib\jquery\dist\jquery.slim.js
 wwwroot\lib\jquery\dist\jquery.slim.min.js
 wwwroot\lib\jquery\dist\jquery.slim.min.map
 wwwroot\lib\jquery\LICENSE.txt
-wwwroot\Screenshot\45178.png
+wwwroot\Screenshot\44633.png
 C:\Users\a.abbaskhani\source\repos\SatraProject\SatraWebApplication\wwwroot\lib\jquery\LICENSE.txt
 C:\Users\a.abbaskhani\source\repos\SatraProject\SatraWebApplication\wwwroot\lib\jquery\dist\jquery.slim.min.map
 C:\Users\a.abbaskhani\source\repos\SatraProject\SatraWebApplication\wwwroot\lib\jquery\dist\jquery.slim.min.js

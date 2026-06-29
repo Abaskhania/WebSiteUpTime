@@ -140,7 +140,6 @@ C:\Users\a.abbaskhani\source\repos\SatraProject\SatraWebApplication\bin\Release\
 C:\Users\a.abbaskhani\source\repos\SatraProject\SatraWebApplication\obj\Release\net10.0\SatraWebApplication.csproj.AssemblyReference.cache
 C:\Users\a.abbaskhani\source\repos\SatraProject\SatraWebApplication\obj\Release\net10.0\compressed\bon5e0rtnx-{0}-veff0vaaz2-veff0vaaz2.gz
 C:\Users\a.abbaskhani\source\repos\SatraProject\SatraWebApplication\obj\Release\net10.0\SatraWeb.8615F350.Up2Date
-C:\Users\a.abbaskhani\source\repos\SatraProject\SatraWebApplication\obj\Release\net10.0\compressed\a2d93ub1k1-{0}-5ipweew5fc-5ipweew5fc.gz
 C:\Users\a.abbaskhani\source\repos\SatraProject\SatraWebApplication\bin\Release\net10.0\Humanizer.dll
 C:\Users\a.abbaskhani\source\repos\SatraProject\SatraWebApplication\bin\Release\net10.0\Microsoft.Build.Framework.dll
 C:\Users\a.abbaskhani\source\repos\SatraProject\SatraWebApplication\bin\Release\net10.0\Microsoft.CodeAnalysis.dll
@@ -229,3 +228,5 @@ C:\Users\a.abbaskhani\source\repos\SatraProject\SatraWebApplication\obj\Release\
 C:\Users\a.abbaskhani\source\repos\SatraProject\SatraWebApplication\obj\Release\net10.0\scopedcss\Pages\Account\Login2.cshtml.rz.scp.css
 C:\Users\a.abbaskhani\source\repos\SatraProject\SatraWebApplication\obj\Release\net10.0\compressed\imug4a81e3-{0}-l3dwo8s19z-l3dwo8s19z.gz
 C:\Users\a.abbaskhani\source\repos\SatraProject\SatraWebApplication\obj\Release\net10.0\compressed\jpey80zi6h-{0}-l3dwo8s19z-l3dwo8s19z.gz
+C:\Users\a.abbaskhani\source\repos\SatraProject\SatraWebApplication\obj\Release\net10.0\SatraWebApplication.sourcelink.json
+C:\Users\a.abbaskhani\source\repos\SatraProject\SatraWebApplication\obj\Release\net10.0\compressed\a2d93ub1k1-{0}-n21125r6sv-n21125r6sv.gz

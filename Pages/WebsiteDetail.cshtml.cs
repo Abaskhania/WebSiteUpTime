@@ -13,10 +13,19 @@ namespace SatraWebApplication.Pages
     public class WebsiteDetailModel : PageModel
     {
         private readonly ApplicationDBContext _context;
-        private readonly IWebHostEnvironment _env;
+        public readonly IWebHostEnvironment _env;
         public WebSite WebsiteInfo { get; set; }
         public string LastScreenShotImage { get; set; }
         public bool HasScreenShot { get; set; } = false;
+        public bool ScreenShotExist(int id)
+        {
+            string filePath = Path.Combine(_env.WebRootPath, "ScreenShot", id.ToString() + ".png");
+            if (System.IO.File.Exists(filePath))
+            {
+                return true;
+            }
+            return false;
+        }
         public string CurrentState { get; set; }
         public WebsiteDetailModel(ApplicationDBContext context, IWebHostEnvironment env)
         {

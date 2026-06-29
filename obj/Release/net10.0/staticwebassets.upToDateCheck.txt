@@ -62,10 +62,10 @@ wwwroot\lib\jquery\dist\jquery.slim.min.js
 wwwroot\lib\jquery\dist\jquery.slim.min.map
 wwwroot\lib\jquery\LICENSE.txt
 wwwroot\js\Chart.js
-wwwroot\js\chartjs-plugin-datalabels.js
+wwwroot\Screenshot\44633.png
 wwwroot\img\power.png
 wwwroot\img\chart.webp
-wwwroot\Screenshot\45178.png
+wwwroot\js\chartjs-plugin-datalabels.js
 C:\Users\a.abbaskhani\source\repos\SatraProject\SatraWebApplication\wwwroot\css\site.css
 C:\Users\a.abbaskhani\source\repos\SatraProject\SatraWebApplication\wwwroot\favicon.ico
 C:\Users\a.abbaskhani\source\repos\SatraProject\SatraWebApplication\wwwroot\js\site.js

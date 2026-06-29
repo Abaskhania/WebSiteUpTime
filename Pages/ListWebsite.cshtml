@@ -42,7 +42,9 @@
                             @index
                         </td>
                         <td>
-                            <a class="link-primary" target="_blank" href=@item.URL>@item.URL</a>
+                            <a class="link-primary" target="_blank" asp-area=""
+                               asp-page="/WebsiteDetail" asp-route-id="@item.WebSiteID">@item.URL</a>
+                           @*  <a class="link-primary" target="_blank" href=@item.URL>@item.URL</a> *@
 
 
                         </td>
@@ -101,7 +103,20 @@
              animation:{
                  duration:1500,
                  easing:'easeOutCirc'
-             },   
+             }, 
+             plugins:
+            {
+                legend:{
+                    display:false
+                },
+                tooltip:{
+                    enabled:false
+                },
+                datalabels: {
+                    display:false
+                }
+            },
+
             legend:{display:false},
             scales:{
                 yAxes:[{ticks:{min:0}

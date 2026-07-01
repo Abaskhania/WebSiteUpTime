@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SatraWebApplication")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8156ab6836c44815701db8aed35060e7381910ba")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+24da3b632a82e8510284de742a9bb4b6416adce7")]
 [assembly: System.Reflection.AssemblyProductAttribute("SatraWebApplication")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SatraWebApplication")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

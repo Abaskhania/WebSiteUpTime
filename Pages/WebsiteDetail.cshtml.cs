@@ -37,12 +37,13 @@ namespace SatraWebApplication.Pages
             this.WebsiteInfo = _context.WebSite.Include(t => t.WebSiteUpTimes).FirstOrDefault(w => w.ID == ID)!;
             this.LastScreenShotImage = this.WebsiteInfo.WebSiteUpTimes.OrderByDescending(t => t.ID).FirstOrDefault()!.ID.ToString();
             string filePath = Path.Combine(_env.WebRootPath, "ScreenShot", LastScreenShotImage+".png");
+            //string.Format("{0:n2}%", (WebsiteInfo.WebSiteUpTimes.OrderByDescending(o => o.ResultDate).Take(30).Where(w => w.ResultGroup == "فعال").Count() + (30 - (WebsiteInfo.WebSiteUpTimes.OrderByDescending(o => o.ResultDate).Count() > 30 ? 30 : WebsiteInfo.WebSiteUpTimes.OrderByDescending(o => o.ResultDate).Count()))) / (/*item.WebSiteUpTimes.Count*1.0*/30.0) * 100);
             if (System.IO.File.Exists(filePath))
             {
                 HasScreenShot = true;
             }
             
-            var handler = new HttpClientHandler()
+            /*var handler = new HttpClientHandler()
             {
                 ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
             };
@@ -88,7 +89,7 @@ namespace SatraWebApplication.Pages
                 {
                     this.CurrentState = "<p class='alert alert-danger'>" + "وضعیت فعلی: " + "غیر فعال" + "</p>";
                 }
-            }
+            }*/
 
         }
     }

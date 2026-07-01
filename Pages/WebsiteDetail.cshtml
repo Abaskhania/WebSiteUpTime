@@ -5,8 +5,12 @@
 <p class="alert alert-primary">
 آدرس رسانه: <a  target="_blank" href="@Model.WebsiteInfo.URL"> @Model.WebsiteInfo.URL </a></p>
 
-@Html.Raw(@Model.CurrentState)
-
+@* @Html.Raw(@Model.CurrentState) *@
+<div id="LastState">
+    <div class="spinner-border text-primary" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
 @* @if (Model.HasScreenShot)
 {
     <p class="alert alert-info">
@@ -66,3 +70,25 @@
 }
     </tbody>
 </table>
+@section Scripts {
+    <script>
+        // Load the data asynchronously after the page is ready
+        async function loadSalesData() {
+            try {
+                
+                const response = await fetch('/api/WSStatus/status?id='+@Model.WebsiteInfo.ID.ToString()); // Call an API endpoint
+                const data = await response.json();
+
+                // Update the DOM with the data
+                const container = document.getElementById('LastState');
+                container.innerHTML = ` ${data.lastStatus}`;
+                //alert(`<p>Total Sales: ${data.totalAmount}</p>`);
+            } catch (error) {
+                console.error('Error loading data:', error);
+            }
+        }
+
+        // Trigger the load
+        loadSalesData();
+    </script>
+}

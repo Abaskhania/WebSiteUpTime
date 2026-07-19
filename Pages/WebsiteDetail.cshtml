@@ -76,7 +76,7 @@
         async function loadSalesData() {
             try {
                 
-                const response = await fetch('/api/WSStatus/status?id='+@Model.WebsiteInfo.ID.ToString()); // Call an API endpoint
+                const response = await fetch(`/api/WSStatus/status?id=${@Model.WebsiteInfo.ID.ToString()}`); // Call an API endpoint
                 const data = await response.json();
 
                 // Update the DOM with the data

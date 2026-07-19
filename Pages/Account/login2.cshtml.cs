@@ -40,7 +40,7 @@ namespace SatraWebApplication.Pages.Account
                 return Page();
             }
             string hashPassword = GetBCryptHash(this.Password);
-            SatraUser u = _context.SatraUser.FirstOrDefault(u => u.Username == this.Username)!;
+            SatraUser u = _context.SatraUser.FirstOrDefault(u => u.Username == this.Username && u.IsValid==true)!;
             if (u is not null)
             {
                 if (BCrypt.Net.BCrypt.Verify(this.Password, u.Password))

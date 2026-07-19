@@ -1,0 +1,51 @@
+﻿@page
+@model SatraWebApplication.Pages.Account.ManageUserModel
+@{
+}
+<div class="text-start">    
+    <a class=" btn btn-primary" target="_blank" asp-area="" asp-page="Register" >کاربر جدید</a>               
+</div>
+<h4>لیست کاربران</h4>
+<hr />
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                ردیف
+            </th>
+            <th>
+                نام کاربری
+            </th>
+            <th>
+                عملیات
+            </th>
+                               
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int index = 1; // Start index from 1
+        }
+        @foreach (var user in Model.satraUsers)
+        {
+            <tr>
+                <td>
+
+                    @index
+                </td>
+                <td>
+                    @user.Username
+                </td>
+                <td>
+                    <a class="link-primary" target="_blank" asp-area="" asp-page="ResetPassword" asp-route-id="@user.ID.ToString()">بازنشانی رمز عبور</a>&nbsp;| &nbsp;
+                    <a class="link-primary"  asp-area="" asp-page-handler="ChangeState" asp-route-id="@user.ID.ToString()">@(user.IsValid ? "فعال" : "غیرفعال")</a>
+                                        
+                </td>
+                
+
+                                        
+            </tr>
+            index++;
+        }
+    </tbody>
+</table>

@@ -1,35 +1,33 @@
-﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using SatraWebApplication.Data;
 using SatraWebApplication.Model;
 using System.ComponentModel.DataAnnotations;
 using System.Security.Cryptography;
-using System.Text;
 
 namespace SatraWebApplication.Pages.Account
 {
     [Authorize(Roles = "Admin")]
-    public class RegisterModel : PageModel
+    public class ResetPasswordModel : PageModel
     {
-
         private readonly ApplicationDBContext _context;
 
-        public RegisterModel(ApplicationDBContext context)
+        public ResetPasswordModel(ApplicationDBContext context)
         {
             _context = context;
         }
-        public string Result { get; set; }
         [BindProperty]
         public RegisterInput Input { get; set; }
-
+        public string Result { get; set; }
         public class RegisterInput
         {
             [Required(ErrorMessage = "نام کاربری الزامی است")]
             [Display(Name = "نام کاربری")]
             public string Username { get; set; }
 
-           
+
             [Required(ErrorMessage = "رمز عبور الزامی است")]
             [DataType(DataType.Password)]
             [Display(Name = "رمز عبور")]
@@ -42,8 +40,11 @@ namespace SatraWebApplication.Pages.Account
             [Compare("Password", ErrorMessage = "رمز عبور و تکرار آن مطابقت ندارند")]
             public string ConfirmPassword { get; set; }
         }
-        public void OnGet()
+
+        public void OnGet(int id)
         {
+            SatraUser uExists = _context.SatraUser.FirstOrDefault(u => u.ID == id)!;
+            this.Input = new RegisterInput { Username = uExists.Username };
             
         }
         public IActionResult OnPost()
@@ -54,21 +55,22 @@ namespace SatraWebApplication.Pages.Account
             }
             string hashPassword = GetBCryptHash(this.Input.Password);
             SatraUser uExists = _context.SatraUser.FirstOrDefault(u => u.Username == this.Input.Username)!;
-            if (uExists == null)
+            if (uExists != null)
             {
                 SatraUser u = new SatraUser { Username = this.Input.Username, Password = hashPassword, Role = "User" };
-                _context.SatraUser.Add(u);
+                // _context.SatraUser.Add(u)
+                u.Password = hashPassword;
                 _context.SaveChanges();
-                this.Result = "ثبت‌ نام با موفقیت انجام شد!";
+                this.Result = "تغییر رمز عبور با موفقیت انجام شد!";
             }
             else
             {
-                ModelState.AddModelError("کاربر تکراری", "نام کاربری فوق قبلا در سامانه ثبت شده است.");
+                ModelState.AddModelError("کاربر موجود نیست", "نام کاربری فوق وجود ندارد.");
                 return Page();
 
             }
-                // در اینجا منطق ذخیره در دیتابیس را بنویسید
-                
+            // در اینجا منطق ذخیره در دیتابیس را بنویسید
+
 
             return Page();
         }

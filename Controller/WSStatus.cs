@@ -26,7 +26,7 @@ namespace SatraWebApplication.Controller
             //await Task.Delay(2000);
             
             this.WebsiteInfo = _context.WebSite.Include(t => t.WebSiteUpTimes).FirstOrDefault(w => w.ID == id)!;
-            string strUpTime=string.Format("{0:n2}%", (this.WebsiteInfo.WebSiteUpTimes.OrderByDescending(o => o.ResultDate).Take(30).Where(w => w.ResultGroup == "فعال").Count() + (30 - (this.WebsiteInfo.WebSiteUpTimes.OrderByDescending(o => o.ResultDate).Count() > 30 ? 30 : this.WebsiteInfo.WebSiteUpTimes.OrderByDescending(o => o.ResultDate).Count()))) / (/*item.WebSiteUpTimes.Count*1.0*/30.0) * 100);
+            //string strUpTime=string.Format("{0:n2}%", (this.WebsiteInfo.WebSiteUpTimes.OrderByDescending(o => o.ResultDate).Take(30).Where(w => w.ResultGroup == "فعال").Count() + (30 - (this.WebsiteInfo.WebSiteUpTimes.OrderByDescending(o => o.ResultDate).Count() > 30 ? 30 : this.WebsiteInfo.WebSiteUpTimes.OrderByDescending(o => o.ResultDate).Count()))) / (/*item.WebSiteUpTimes.Count*1.0*/30.0) * 100);
 
 
             var handler = new HttpClientHandler()

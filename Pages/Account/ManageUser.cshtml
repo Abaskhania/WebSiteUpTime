@@ -3,7 +3,7 @@
 @{
 }
 <div class="text-start">    
-    <a class=" btn btn-primary" target="_blank" asp-area="" asp-page="Register" >کاربر جدید</a>               
+    <a class=" btn btn-primary"  asp-area="" asp-page="Register" >کاربر جدید</a>               
 </div>
 <h4>لیست کاربران</h4>
 <hr />
@@ -37,7 +37,7 @@
                     @user.Username
                 </td>
                 <td>
-                    <a class="link-primary" target="_blank" asp-area="" asp-page="ResetPassword" asp-route-id="@user.ID.ToString()">بازنشانی رمز عبور</a>&nbsp;| &nbsp;
+                    <a class="link-primary"  asp-area="" asp-page="ResetPassword" asp-route-id="@user.ID.ToString()">بازنشانی رمز عبور</a>&nbsp;| &nbsp;
                     <a class="link-primary"  asp-area="" asp-page-handler="ChangeState" asp-route-id="@user.ID.ToString()">@(user.IsValid ? "فعال" : "غیرفعال")</a>
                                         
                 </td>

@@ -18,7 +18,7 @@
 
     </p>  
 }
- *@
+*@
 <br />
 @{
     int index = 1; // Start index from 1
@@ -72,23 +72,22 @@
 </table>
 @section Scripts {
     <script>
-        // Load the data asynchronously after the page is ready
-        async function loadSalesData() {
+        
+        async function loadStatusData() {
             try {
                 
-                const response = await fetch(`/api/WSStatus/status?id=${@Model.WebsiteInfo.ID.ToString()}`); // Call an API endpoint
+                const response = await fetch(`/api/WSStatus/status?id=${@Model.WebsiteInfo.ID.ToString()}`); 
                 const data = await response.json();
-
-                // Update the DOM with the data
+                
                 const container = document.getElementById('LastState');
                 container.innerHTML = ` ${data.lastStatus}`;
-                //alert(`<p>Total Sales: ${data.totalAmount}</p>`);
+                
             } catch (error) {
                 console.error('Error loading data:', error);
             }
         }
 
-        // Trigger the load
-        loadSalesData();
+        
+        loadStatusData();
     </script>
 }

@@ -9,7 +9,7 @@ using System.Text;
 
 namespace SatraWebApplication.Pages.Account
 {
-    [Authorize(Roles = "Admin")]
+    [AllowAnonymous]
     public class RegisterModel : PageModel
     {
 
@@ -28,8 +28,9 @@ namespace SatraWebApplication.Pages.Account
             [Required(ErrorMessage = "نام کاربری الزامی است")]
             [Display(Name = "نام کاربری")]
             public string Username { get; set; }
+            
 
-           
+
             [Required(ErrorMessage = "رمز عبور الزامی است")]
             [DataType(DataType.Password)]
             [Display(Name = "رمز عبور")]
@@ -52,11 +53,11 @@ namespace SatraWebApplication.Pages.Account
             {
                 return Page();
             }
-            string hashPassword = GetBCryptHash(this.Input.Password);
+            
             SatraUser uExists = _context.SatraUser.FirstOrDefault(u => u.Username == this.Input.Username)!;
             if (uExists == null)
             {
-                SatraUser u = new SatraUser { Username = this.Input.Username, Password = hashPassword, Role = "User" };
+                SatraUser u = new SatraUser { Username = this.Input.Username, Password = this.Input.Password, Role = "User" };
                 _context.SatraUser.Add(u);
                 _context.SaveChanges();
                 this.Result = "ثبت‌ نام با موفقیت انجام شد!";
@@ -72,18 +73,6 @@ namespace SatraWebApplication.Pages.Account
 
             return Page();
         }
-        private string GetBCryptHash(string input)
-        {
-            using (var md5 = MD5.Create())
-            {
-
-                //byte[] inputByts = Encoding.UTF8.GetBytes(input);
-                //byte[] hashBytes = md5.ComputeHash(inputByts);
-                //return Convert.ToHexString(hashBytes);
-
-            }
-            return BCrypt.Net.BCrypt.HashPassword(input);
-
-        }
+        
     }
 }

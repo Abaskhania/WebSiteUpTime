@@ -1,0 +1,92 @@
+﻿@page
+@model SatraWebApplication.Pages.Report1Model
+@{
+}
+
+<form class="row g-3" method="post">
+    <div class="col-auto">
+        <label for="FromDate" class="visually-hidden"> تاریخ</label>
+        <input type="text" class="date form-control" asp-for="FromDate" placeholder=" تاریخ">
+    </div>
+    <div class="col-auto">
+        <label for="ToDate" class="visually-hidden">با تاریخ</label>
+        <input type="text" class="date form-control" asp-for="ToDate" placeholder="با تاریخ">
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary mb-3">گزارش</button>
+    </div>
+</form>
+@{
+    int index = 1; // Start index from 1
+}
+@if(Model.ReportResult != null)
+
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>
+                    ردیف
+
+                </th>
+                <th>
+                    آدرس
+                </th>
+                <th>
+                    وضعیت در تاریخ @Model.FromDate
+                </th>
+                <th  >
+                    وضعیت در تاریخ @Model.ToDate
+                </th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model.ReportResult)
+            {
+                <tr>
+                    <td>
+
+                        @index
+                    </td>
+                    <td>
+
+                        @item.URL
+
+                    </td>
+                    <td>
+                        @item.RESULT1
+                    </td>
+                    <td class="text-success">
+
+
+                        @item.RESULT2
+
+
+                    </td>
+
+
+                </tr>
+                index++;
+            }
+        </tbody>
+    </table>
+}
+<link href="~/css/persian-datepicker.min.css" rel="stylesheet" />
+@section Scripts {
+    <script src="~/js/persian-date.min.js"></script>
+    <script src="~/js/persian-datepicker.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $(".date").pDatepicker({
+                format: "YYYY/MM/DD",
+                autoClose: true,
+                initialValue: false
+            });
+
+        });
+    </script>
+}

@@ -61,8 +61,22 @@ namespace SatraWebApplication.Pages.Account
                     {
                         authProperty.IsPersistent = this.RememberMe;
                     }
-                        var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                    var log = new UserLoginLog
+                    {
+                        UserId = u.Username,
+                        LoginTime = DateTime.UtcNow,
+                        IpAddress = HttpContext.Connection.RemoteIpAddress?.ToString(),
+                        UserAgent = HttpContext.Request.Headers["User-Agent"].ToString(),
+                        IsSuccessful = true
+                    };
+
+                    _context.UserLoginLogs.Add(log);
+
+                    await _context.SaveChangesAsync();
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity),authProperty);
+                    
+                    
                     return RedirectToPage("/Index");
                 }
                 else

@@ -7,9 +7,11 @@ using System.Net.NetworkInformation;
 using static System.Net.Mime.MediaTypeNames;
 using System.IO;
 using System.Diagnostics.Eventing.Reader;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SatraWebApplication.Pages
 {
+    [Authorize]
     public class WebsiteDetailModel : PageModel
     {
         private readonly ApplicationDBContext _context;
@@ -32,6 +34,7 @@ namespace SatraWebApplication.Pages
             _context = context;
             _env = env;
         }
+
         public  async Task OnGetAsync(int ID)
         {
             this.WebsiteInfo = _context.WebSite.Include(t => t.WebSiteUpTimes).FirstOrDefault(w => w.ID == ID)!;

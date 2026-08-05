@@ -56,9 +56,13 @@
 
                         </td>
                         <td>
-                        @if (Model.ScreenShotExist(item.ID))
+                        if(Model.ScreenShotExist(item.ID))
                         {
-                              <a target="_blank" href=@($"screenshot/{ item.ID.ToString()}.png")>مشاهده</a>
+                            <a target="_blank" href=@($"/api/images/{ item.ID.ToString()}.png")>                        
+                            <img src=@($"/api/images/{item.ID.ToString()}.png")
+                                         alt="Photo"
+                                         width="200" />                        
+                              </a>
                         }
                             
 

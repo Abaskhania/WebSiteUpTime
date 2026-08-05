@@ -60,6 +60,17 @@ namespace SatraWebApplication.Pages.Account
                     {
                         authProperty.IsPersistent = this.RememberMe;
                     }
+                    var log = new UserLoginLog
+                    {
+                        UserId = u.Username,
+                        LoginTime = DateTime.UtcNow,
+                        IpAddress = HttpContext.Connection.RemoteIpAddress?.ToString(),
+                        UserAgent = HttpContext.Request.Headers["User-Agent"].ToString(),
+                        IsSuccessful = true
+                    };
+
+                    _context.UserLoginLogs.Add(log);
+                    await _context.SaveChangesAsync();
                     var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperty);
                     return RedirectToPage("/Index");

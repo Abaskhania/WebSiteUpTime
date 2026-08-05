@@ -31,9 +31,9 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto">
                         
-                        @*  <li class="nav-item">
-                                <a class="nav-link active" href="/Account/Register">تعریف کاربر جدید</a>
-                            </li>
+                        @*<li class="nav-item">
+                                <a class="nav-link active" href="/Report1">گزارش بررسی تغییر وضعیت بر حسب تاریخ</a>
+                              </li>
                         
                         <li class="nav-item">
                             <a class="nav-link" href="/History">تاریخچه</a>
@@ -57,6 +57,7 @@
 
                                     }
                                     @**@
+                                    <li><a class="dropdown-item" href="/Report1">گزارش تغییر وضعیت </a></li>
                                     <li>
                                         <form asp-area="Identity" asp-page="/Account/Logout" class="d-inline" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post" id="logoutForm" >
                                             
@@ -65,6 +66,7 @@
                                         </form>
                                         
                                     </li>
+                                    
                                 </ul>
                             </li>
                         }

@@ -24,7 +24,7 @@ namespace SatraWebApplication.Pages.Account
         public async Task<IActionResult> OnPostAsync()
         {
             var login = await _context.UserLoginLogs
-           .Where(x => x.UserId == User.Identity.Name)
+           .Where(x => x.UserId == User.Identity.Name && x.IsSuccessful)
            .OrderByDescending(x => x.LoginTime)
            .FirstOrDefaultAsync();
 

@@ -81,12 +81,36 @@ namespace SatraWebApplication.Pages.Account
                 }
                 else
                 {
+                    var logFailed = new UserLoginLog
+                    {
+                        UserId = u.Username,
+                        LoginTime = DateTime.UtcNow,
+                        IpAddress = HttpContext.Connection.RemoteIpAddress?.ToString(),
+                        UserAgent = HttpContext.Request.Headers["User-Agent"].ToString(),
+                        IsSuccessful = false
+                    };
+
+                    _context.UserLoginLogs.Add(logFailed);
+
+                    await _context.SaveChangesAsync();
                     ModelState.AddModelError(string.Empty, "نام کاربری و رمز عبور نامعتبر است");
                     return Page();
                 }
 
                 //HttpContext.User?.Identity?.IsAuthenticated
             }
+            var logAttemt = new UserLoginLog
+            {
+                UserId = this.Username,
+                LoginTime = DateTime.UtcNow,
+                IpAddress = HttpContext.Connection.RemoteIpAddress?.ToString(),
+                UserAgent = HttpContext.Request.Headers["User-Agent"].ToString(),
+                IsSuccessful = false
+            };
+
+            _context.UserLoginLogs.Add(logAttemt);
+
+            await _context.SaveChangesAsync();
             ModelState.AddModelError(string.Empty, "نام کاربری و رمز عبور نامعتبر است");
             return Page();
         }
